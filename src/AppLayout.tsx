@@ -1,8 +1,12 @@
 import type { FC } from "react";
-import { NavBar, TabBar } from "antd-mobile";
+
+import { NavBar, Space, TabBar } from "antd-mobile";
 import {
   AppOutline,
+  FilterOutline,
   MessageOutline,
+  SearchOutline,
+  StarOutline,
   UnorderedListOutline,
   UserOutline,
 } from "antd-mobile-icons";
@@ -52,10 +56,27 @@ const Bottom: FC = () => {
 };
 
 function App() {
+  const right = (
+    <div style={{ fontSize: 24 }}>
+      <Space style={{ "--gap": "16px" }}>
+        <StarOutline />
+        <FilterOutline />
+      </Space>
+    </div>
+  );
+
+  const search = (
+    <div style={{ fontSize: 24 }}>
+      <SearchOutline />
+    </div>
+  );
+
   return (
     <div className="app">
       <div className="top">
-        <NavBar>配合路由使用</NavBar>
+        <NavBar backIcon={false} back={search} right={right} >
+          配合路由使用
+        </NavBar>
       </div>
       <div className="body">
         {/* This is where the routed components will be rendered */}
@@ -67,6 +88,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

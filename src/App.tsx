@@ -1,7 +1,9 @@
+import PeriodTabs from './components/PeriodTabs/PeriodTabs';
+
 function App() {
   return (
     <div>
-      Test App Component
+      <PeriodTabs/>
     </div>
   );
 }
