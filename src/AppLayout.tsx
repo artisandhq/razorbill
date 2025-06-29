@@ -2,13 +2,13 @@ import type { FC } from "react";
 
 import { NavBar, Space, TabBar } from "antd-mobile";
 import {
-  AppOutline,
   FilterOutline,
-  MessageOutline,
   SearchOutline,
   StarOutline,
-  UnorderedListOutline,
-  UserOutline,
+  BankcardOutline,
+  HistogramOutline,
+  FileOutline,
+  SetOutline,
 } from "antd-mobile-icons";
 
 import "./App.css";
@@ -26,23 +26,23 @@ const Bottom: FC = () => {
   const tabs = [
     {
       key: "/",
-      title: "首页",
-      icon: <AppOutline />,
+      title: "Trans",
+      icon: <FileOutline />,
     },
     {
-      key: "/todo",
-      title: "待办",
-      icon: <UnorderedListOutline />,
+      key: "/stats",
+      title: "Stats",
+      icon: <HistogramOutline />,
     },
     {
-      key: "/message",
-      title: "消息",
-      icon: <MessageOutline />,
+      key: "/accounts",
+      title: "Accounts",
+      icon: <BankcardOutline />,
     },
     {
-      key: "/me",
-      title: "我的",
-      icon: <UserOutline />,
+      key: "/settings",
+      title: "Settings",
+      icon: <SetOutline />,
     },
   ];
 
