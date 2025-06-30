@@ -12,9 +12,32 @@ import {
 } from "antd-mobile-icons";
 
 import "./App.css";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet, useLocation, useNavigate } from "react-router";
 
-const Bottom: FC = () => {
+const tabs = [
+  {
+    key: "/",
+    title: "Trans",
+    icon: <FileOutline />,
+  },
+  {
+    key: "/stats",
+    title: "Stats",
+    icon: <HistogramOutline />,
+  },
+  {
+    key: "/accounts",
+    title: "Accounts",
+    icon: <BankcardOutline />,
+  },
+  {
+    key: "/settings",
+    title: "Settings",
+    icon: <SetOutline />,
+  },
+];
+
+const BottomTabBar: FC = () => {
   const { pathname } = location;
   const navigate = useNavigate();
 
@@ -22,29 +45,6 @@ const Bottom: FC = () => {
     navigate(value);
     console.log("setRouteActive", value);
   };
-
-  const tabs = [
-    {
-      key: "/",
-      title: "Trans",
-      icon: <FileOutline />,
-    },
-    {
-      key: "/stats",
-      title: "Stats",
-      icon: <HistogramOutline />,
-    },
-    {
-      key: "/accounts",
-      title: "Accounts",
-      icon: <BankcardOutline />,
-    },
-    {
-      key: "/settings",
-      title: "Settings",
-      icon: <SetOutline />,
-    },
-  ];
 
   return (
     <TabBar activeKey={pathname} onChange={(value) => setRouteActive(value)}>
@@ -56,6 +56,10 @@ const Bottom: FC = () => {
 };
 
 function App() {
+  // for changing the title dynamically based on the current route
+  const location = useLocation();
+
+  // for the right side of the NavBar
   const right = (
     <div style={{ fontSize: 24 }}>
       <Space style={{ "--gap": "16px" }}>
@@ -64,7 +68,7 @@ function App() {
       </Space>
     </div>
   );
-
+  
   const search = (
     <div style={{ fontSize: 24 }}>
       <SearchOutline />
@@ -74,8 +78,11 @@ function App() {
   return (
     <div className="app">
       <div className="top">
-        <NavBar backIcon={false} back={search} right={right} >
-          配合路由使用
+        <NavBar backIcon={false} back={search} right={right}>
+          {/* if the URL location is '/', then print "Transactions", otherwise print use tabs.title */}
+          {tabs.find((e) => e.key === location.pathname)?.title === "Trans"
+            ? "Transactions"
+            : tabs.find((e) => e.key === location.pathname)?.title}
         </NavBar>
       </div>
       <div className="body">
@@ -83,7 +90,7 @@ function App() {
         <Outlet />
       </div>
       <div className="bottom">
-        <Bottom />
+        <BottomTabBar />
       </div>
     </div>
   );
