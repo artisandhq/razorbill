@@ -68,7 +68,7 @@ function App() {
       </Space>
     </div>
   );
-  
+
   const search = (
     <div style={{ fontSize: 24 }}>
       <SearchOutline />
@@ -77,20 +77,22 @@ function App() {
 
   return (
     <div className="app">
-      <div className="top">
-        <NavBar backIcon={false} back={search} right={right}>
-          {/* if the URL location is '/', then print "Transactions", otherwise print use tabs.title */}
-          {tabs.find((e) => e.key === location.pathname)?.title === "Trans"
-            ? "Transactions"
-            : tabs.find((e) => e.key === location.pathname)?.title}
-        </NavBar>
-      </div>
-      <div className="body">
-        {/* This is where the routed components will be rendered */}
-        <Outlet />
-      </div>
-      <div className="bottom">
-        <BottomTabBar />
+      <div className="mobile">
+        <div className="top">
+          <NavBar backIcon={false} back={search} right={right}>
+            {/* if the URL location is '/', then print "Transactions", otherwise print use tabs.title */}
+            {tabs.find((e) => e.key === location.pathname)?.title === "Trans"
+              ? "Transactions"
+              : tabs.find((e) => e.key === location.pathname)?.title}
+          </NavBar>
+        </div>
+        <div className="body">
+          {/* This is where the routed components will be rendered */}
+          <Outlet />
+        </div>
+        <div className="bottom">
+          <BottomTabBar />
+        </div>
       </div>
     </div>
   );
